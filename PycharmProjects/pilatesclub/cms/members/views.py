@@ -121,6 +121,9 @@ def wordput(request):
 
     return render(request, 'members/wordput.html', {'fromOtherPage': fromOtherPage})
 
+def javacore(request):
+    return render(request, 'members/xjavacore.html')
+
 @api_view(['GET', 'POST'])
 def apiOverview(request):
     api_urls= {

@@ -13,5 +13,7 @@ urlpatterns = [
     path('wordput', views.wordput, name='wordput'),
     path('api/', views.apiOverview, name='apioverview'),
     path('apimembers/', views.memberList, name='apimemberlist'),
+    path('javacore/', views.javacore, name='javacore'),
+
 
 ]
