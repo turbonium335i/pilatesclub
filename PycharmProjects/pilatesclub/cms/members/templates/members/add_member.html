@@ -1,0 +1,18 @@
+{% extends 'members/base.html' %}
+{% block content %}
+{% load bootstrap %}
+
+
+<div class="w-50 p-3">
+    <h1>Add New Member</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form|bootstrap}}
+<input class="btn btn-info" type="submit" name="Add">
+</form>
+
+</div>
+
+
+  {% endblock %}

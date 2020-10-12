@@ -1,0 +1,23 @@
+{% extends 'members/base.html' %}
+<head>
+    <title>{{fromOtherPage}}</title>
+</head>
+
+{% block content %}
+
+
+<body>
+<h1>this is from the {{fromOtherPage}} </h1>
+</body>
+</html>
+
+<script>
+
+    $("title").html('{{fromOtherPage}}');
+
+
+
+
+</script>
+
+  {% endblock %}

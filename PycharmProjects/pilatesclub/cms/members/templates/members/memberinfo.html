@@ -1,0 +1,89 @@
+{% extends 'members/base.html' %}
+{% block content %}
+{% load bootstrap %}
+
+
+<div class="container">
+
+  <div class="card">
+  <div class="card-header">
+    <h2>Member Information - ID: {{clients.id}}</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Name: {{clients.name}}</h5>
+        <p><h5>Phone: {{clients.phone}}</h5></p>
+    <p><h5>Registered: {{clients.registered}}</h5></p>
+    <p><h5>Comments: {{clients.comments}}</h5></p>
+
+    <a href="#" class="btn btn-primary">Edit Info</a>
+  </div>
+</div>
+
+<br>
+
+
+</div>
+
+<div class="container">
+
+                  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Session</th>
+      <th scope="col">Date</th>
+      <th scope="col">Instructor</th>
+      <th scope="col">Timestamp</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for lesson in clientlessons %}
+      <td>{{ forloop.counter}}</td>
+      <td>{{lesson.lesson_date}}</td>
+      <td>{{lesson.instructedby.name}}</td>
+    <td>{{lesson.timestamp}}</td>
+
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<br>
+
+<div class="container">
+
+                  <table class="table table-striped">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">No.</th>
+            <th scope="col">Date</th>
+      <th scope="col">Sessions</th>
+        <th scope="col">Amount</th>
+      <th scope="col">Payment Type</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for payment in clientpayments %}
+    <td>{{ forloop.counter}}</td>
+          <td>{{payment.timestamp}}</td>
+              <td>{{payment.sessions}}</td>
+      <td>{{payment.paid}}</td>
+              <td>{{payment.payment_type}}</td>
+
+
+
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+  {% endblock %}
+
+

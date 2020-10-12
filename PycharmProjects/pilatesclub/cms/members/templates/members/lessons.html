@@ -1,0 +1,43 @@
+{% extends 'members/base.html' %}
+{% block content %}
+{% load bootstrap %}
+
+
+<div class="container">
+
+            <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Lessons</h1>
+            <p class="lead">Recent Lessons: <span style="font-weight: bold;">{{total}}</span></p>
+          </div>
+        </div>
+
+
+                  <table class="table table-striped">
+  <thead>
+<tr class="table-danger">
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Lesson Date</th>
+      <th scope="col">Instructor</th>
+      <th scope="col">Last Edited</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for lesson in clientlessons %}
+      <td>{{ lesson.id}}</td>
+      <td>{{lesson.name.name}}</td>
+        <td>{{lesson.lesson_date}}</td>
+      <td>{{lesson.instructedby.name}}</td>
+        <td>{{lesson.timestamp}}</td>
+
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+  {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'members/base.html' %}
+{% block content %}
+{% load bootstrap %}
+{% load humanize %}
+
+
+
+
+<div class="container">
+
+              <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Sales</h1>
+            <p class="lead">Total Sales: <span style="font-weight: bold;">{{total}}</span> |
+            Total Gross Sales: <span style="font-weight: bold;">${{totalsales|floatformat:2|intcomma}}</span>
+
+
+            </p>
+          </div>
+        </div>
+
+                  <table class="table table-striped">
+  <thead>
+<tr class="table-success">
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Sessions</th>
+      <th scope="col">Paid Amount</th>
+      <th scope="col">Payment Type</th>
+      <th scope="col">Per Session</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for sale in sales %}
+      <td>{{ sale.id}}</td>
+      <td><a href="{% url 'memberinfo' sale.name.id %}">{{sale.name.name}}</a></td>
+      <td>{{sale.sessions}}</td>
+      <td>{{sale.paid|floatformat:2|intcomma}}</td>
+      <td>{{sale.payment_type}}</td>
+      <td>{{sale.per_lesson|floatformat:2|intcomma}}</td>
+
+
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+  {% endblock %}

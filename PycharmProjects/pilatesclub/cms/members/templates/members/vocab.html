@@ -1,0 +1,39 @@
+{% extends 'members/base.html' %}
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+{% block content %}
+{% load bootstrap %}
+
+
+<div class="w-50 p-3">
+    <h1>Add Vocabulary</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form|bootstrap}}
+<input class="btn btn-info" type="submit" name="Add">
+
+</form>
+    <br>
+          {% for vocab in vword %}
+      <li>{{ forloop.counter}}</li>
+       <li>{{vocab.vocab}}</li>
+    <li>{{vocab.meaning}}</li>
+      {% endfor %}
+
+
+    <li>{{randomlist}}</li>
+<br>
+    <form>
+        <label for="fname"><h3>Definition:</h3></label>
+  <input type="text" id="fname" name="fname"><br>
+
+</form>
+
+</div>
+
+
+  {% endblock %}
