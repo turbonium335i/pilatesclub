@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Word Champ</title>
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+        <a class="nav-link" href="{% url 'base' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'add_member' %}">Add<span class="sr-only">(current)</span></a>
+      </li>
+
+
+
+            <li class="nav-item active">
+        <a class="nav-link" href="{% url 'operations' %}">Sales</a>
+      </li>
+
+                  <li class="nav-item active">
+        <a class="nav-link" href="{% url 'lessons' %}">Lessons</a>
+      </li>
+
+                        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'search' %}"> Search </a>
+      </li>
+                              <li class="nav-item active">
+        <a class="nav-link" href="{% url 'vocab' %}"> Vocab </a>
+      </li>
+
+        <li class="nav-item active"><a class="nav-link" href="http://127.0.0.1:8000/generateword/3"> Generate </a>
+      </li>
+
+            <li class="nav-item active">
+        <a class="nav-link" href="http://127.0.0.1:8000/admin/">[Admin]</a>
+      </li>
+
+    </ul>
+            <span style="color:white">Hola, USER </span>
+      <span><a class="nav-link" href="">Logout</a></span>
+
+     <a class="nav-link" href="{% url 'search' %}">
+            <button class="btn btn-outline-warning" type="submit">Search</button></a>
+
+
+  </div>
+</nav>
+  <br>
+  <div class="container">
+      <div class="card text-center" style="width:800px; margin: auto;">
+        <div class="progress">
+      <div class="progress-bar bg-success" id="barbar" role="progressbar" style="width: 100%"
+           aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+      <h5 class="card-header" id="boxbox">Core Vocab Set 01 <span id="countdown" style="color:red">
+        ||time: </span></h5>
+      <div class="card-body">
+        <div id='wordlist'> word list div:<br></div>
+          <h5 id="worddisplay" style="color:blue;">count: </h5>
+    <br>
+    
+    <h2></h2>
+    <h1 id="title"></h1>
+          <br>
+    
+    <form id="myform" action="" method="" target="">
+      <label for="fname">Definition:</label><br><br>
+      <input type="text" autocomplete="off" id="fname" name="tname" value="" style="font-size:20pt;height:60px;width:200px;"><br><br>
+      <input class="btn btn-outline-success" type="submit" value="Enter">
+    </form>
+    <br>
+          <form>
+      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+      <label for="vehicle1"> Audio	&#160</label>
+      <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+      <label for="vehicle2"> Image	&#160</label>
+      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+      <label for="vehicle3"> Hint </label>
+    </form>
+    <h5 id="wordtyped" style="color:rgb(231, 62, 247);">typed: </h5>
+    
+    
+      </div>
+    </div>
+<!-- add a count down timer -->
+
+
+  <script>
+        var wordset = {'word':'cat', 'definition':'neko', 'freq': 3};
+        var wordset2 = {'word':'dog', 'definition':'god', 'freq': 2};
+        var wordset3 = {'word':'bat', 'definition':'tab', 'freq': 1};
+        var wordset4 = {'word':'bear', 'definition':'koala', 'freq': 5};
+        var wordset5 = {'word':'tiger', 'definition':'tony', 'freq': 4};
+
+        var wordgroup = [wordset, wordset2, wordset3, wordset4, wordset5];
+
+        count = wordgroup.length;
+
+        var item = [];
+
+        var popindex = 0;
+
+        let i = 10;
+
+      
+      function getRandom (wordlist) {
+        var randomItem = wordgroup[Math.floor(Math.random()*wordgroup.length)];
+        // console.log( randomItem );
+        document.getElementById("wordlist").innerHTML = ""
+        ti = 0;
+       
+        timeStart();
+        $("#title").html(randomItem.word);
+        item.push(randomItem);
+        console.log(item[0].word);
+        count = wordgroup.length;
+        item.forEach(wordloop);
+        
+        console.log('word index: ' + wordgroup.findIndex(getIndex));
+        popindex = wordgroup.findIndex(getIndex);
+        wordgroup.forEach(wordloop);
+
+        function wordloop (word, index) {
+          console.log(word, index);
+          document.getElementById("wordlist").innerHTML += index + ": " + word.word + ", ";
+
+        }
+
+        $("#worddisplay").html('count: '+ count);
+        
+        console.log('words left ' + wordgroup.length);
+
+         }
+
+      function getIndex(search) {
+        return search.word === item[0].word;
+
+      }   
+ 
+      function getvalue() {
+        setTimeout(() => {console.log(item[0].definition);}, 1000);
+      }         
+
+      function delFind (item, oldlist) {
+        var delitem = '';
+
+
+      }
+
+      let ti = 0;
+      let intervalID;
+
+
+      // $("#countdown").click(function () {
+      //   intervalID = setInterval( function () {        
+      //   ti += 1;
+      //   $("#countdown").html('|| timer: '+ ti);
+
+      // }, 100); }
+      
+      // );
+
+      // $( "#fname" ).click(function () {
+      //   clearInterval(intervalID); });
+
+      function timeStart () {
+        intervalID = setInterval( function () {        
+        ti += 1;
+        $("#countdown").html('|| timer: '+ ti); 
+
+      }, 1000);
+
+
+      }
+
+      function timeEnd () {
+        
+        clearInterval(intervalID);
+
+      }
+
+      
+
+
+
+
+
+
+
+      // on submit actions
+
+      $( document ).ready(getRandom);
+
+      getvalue();
+      
+      
+      $("#myform").submit(function(e){e.preventDefault();      
+        var textinput = $("#fname").val().trim().toLowerCase();
+        i = 0;
+                
+        if (textinput == item[0].definition) { console.log('good job');
+        // if specific color toggle
+        timeEnd();  
+          $("#barbar").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+          $("#wordtyped").html('typed: '+ textinput);
+          $('#myform')[0].reset();
+          item.pop();
+          console.log('wordgroup ' + item.length);
+          console.log('popindex: ' + popindex);
+          wordgroup.splice(popindex, 1);
+          ti = 0;
+          getRandom();
+
+
+          // getRandom();
+// use call back function to order the make sure instance ends
+
+      }
+          
+
+        else {
+
+          timeEnd();          
+          console.log('that is incorrect');
+          $("#wordtyped").html('typed: '+ textinput);
+          $(".card-header").css({"background-color" : "gray"});
+          setTimeout(() => {$(".card-header").css({"background-color" : "white"})
+          }, 500);
+          
+          $('#myform')[0].reset();
+          wordgroup.push(item[0]);
+          item.pop();
+          ti = 0;
+          getRandom();
+          
+          
+
+        }
+        
+        
+        })
+        
+
+
+
+      // create a reusueable function to select random, check, and then add to count
+
+  </script>
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
